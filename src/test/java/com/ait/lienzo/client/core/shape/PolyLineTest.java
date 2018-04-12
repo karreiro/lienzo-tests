@@ -24,8 +24,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.doReturn;
@@ -76,6 +76,9 @@ public class PolyLineTest {
     @Test
     public void testParseWhenPointsSizeIsGreaterThanOne() {
 
+        final Point2D pointOne = new Point2D(1, 1);
+        final Point2D pointTwo = new Point2D(2, 2);
+
         doReturn(point2DArray).when(attributes).getPoints();
 
         when(point2DArray.size()).thenReturn(2);
@@ -86,8 +89,8 @@ public class PolyLineTest {
         final boolean parse = polyLine.parse(attributes);
 
         assertTrue(parse);
-        assertNotNull(polyLine.getTailOffsetPoint());
-        assertNotNull(polyLine.getHeadOffsetPoint());
+        assertEquals(pointOne, polyLine.getHeadOffsetPoint());
+        assertEquals(pointTwo, polyLine.getTailOffsetPoint());
     }
 
     private Attributes makeAttributes() {
