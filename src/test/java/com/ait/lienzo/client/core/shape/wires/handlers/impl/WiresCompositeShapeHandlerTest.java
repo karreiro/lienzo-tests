@@ -18,7 +18,6 @@
 package com.ait.lienzo.client.core.shape.wires.handlers.impl;
 
 import com.ait.lienzo.client.core.event.NodeDragEndEvent;
-import com.ait.lienzo.client.core.shape.Layer;
 import com.ait.lienzo.client.core.shape.MultiPath;
 import com.ait.lienzo.client.core.shape.wires.PickerPart;
 import com.ait.lienzo.client.core.shape.wires.WiresManager;
@@ -59,14 +58,11 @@ public class WiresCompositeShapeHandlerTest {
     private DragContext dragContext;
 
     private WiresCompositeShapeHandler tested;
-    private Layer layer;
     private WiresShape parent;
 
     @Before
     public void setup() {
         parent = new WiresShape(new MultiPath().circle(10));
-        layer = new Layer();
-        layer.add(parent.getGroup());
         when(control.getSharedParent()).thenReturn(parent);
         tested = new WiresCompositeShapeHandler(control,
                                                 highlight,
@@ -132,15 +128,14 @@ public class WiresCompositeShapeHandlerTest {
 
     @Test
     public void testOnEndDragSuccess() {
-
-        final int adjustedX = 10;
-        final int adjustedY = 5;
-        final Point2D distanceAdjusted = new Point2D(adjustedX, adjustedY);
+        final int ADJUSTED_X = 10;
+        final int ADJUSTED_Y = 5;
+        final Point2D distanceAdjusted = new Point2D(ADJUSTED_X, ADJUSTED_Y);
         final NodeDragEndEvent endEvent = mock(NodeDragEndEvent.class);
 
         when(dragContext.getDistanceAdjusted()).thenReturn(distanceAdjusted);
-        when(dragContext.getDragStartX()).thenReturn(adjustedX);
-        when(dragContext.getDragStartY()).thenReturn(adjustedY);
+        when(dragContext.getDragStartX()).thenReturn(ADJUSTED_X);
+        when(dragContext.getDragStartY()).thenReturn(ADJUSTED_Y);
         when(endEvent.getDragContext()).thenReturn(dragContext);
         when(control.onMoveComplete()).thenReturn(true);
         when(control.accept()).thenReturn(true);
@@ -157,15 +152,14 @@ public class WiresCompositeShapeHandlerTest {
 
     @Test
     public void testOnEndDragFailed() {
-
-        final int adjustedX = 10;
-        final int adjustedY = 5;
-        final Point2D distanceAdjusted = new Point2D(adjustedX, adjustedY);
+        final int ADJUSTED_X = 10;
+        final int ADJUSTED_Y = 5;
+        final Point2D distanceAdjusted = new Point2D(ADJUSTED_X, ADJUSTED_Y);
         final NodeDragEndEvent endEvent = mock(NodeDragEndEvent.class);
 
         when(dragContext.getDistanceAdjusted()).thenReturn(distanceAdjusted);
-        when(dragContext.getDragStartX()).thenReturn(adjustedX);
-        when(dragContext.getDragStartY()).thenReturn(adjustedY);
+        when(dragContext.getDragStartX()).thenReturn(ADJUSTED_X);
+        when(dragContext.getDragStartY()).thenReturn(ADJUSTED_Y);
         when(endEvent.getDragContext()).thenReturn(dragContext);
         when(control.onMoveComplete()).thenReturn(true);
         when(control.accept()).thenReturn(false);
