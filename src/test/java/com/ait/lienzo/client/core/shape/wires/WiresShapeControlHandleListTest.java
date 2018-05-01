@@ -365,7 +365,7 @@ public class WiresShapeControlHandleListTest
         tested = spy(tested);
         tested.refresh();
         verify(magnetsControl).shapeChanged();
-        verify(tested).resize(null, null, 10.0, 12.0, true);
+        verify(tested).resize(10.0, 12.0, true);
     }
 
     private void setCPLocations(final double x0, final double y0, final double x1, final double y1, final double x2, final double y2, final double x3, final double y3)
