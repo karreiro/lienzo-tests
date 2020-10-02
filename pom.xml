@@ -40,6 +40,29 @@
 
   </properties>
 
+  <profiles>
+    <profile>
+      <id>active-on-jdk-11</id>
+      <activation>
+        <jdk>11</jdk>
+      </activation>
+      <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+      </properties>
+    </profile>
+    <profile>
+      <id>active-on-jdk-8</id>
+      <activation>
+        <jdk>1.8</jdk>
+      </activation>
+      <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+      </properties>
+    </profile>
+  </profiles>
+
   <scm>
     <connection>scm:git:https://github.com/kiegroup/lienzo-tests.git</connection>
     <developerConnection>scm:git:git@github.com:kiegroup/lienzo-tests.git</developerConnection>
@@ -133,11 +156,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.2</version>
-        <configuration>
-          <source>11</source>
-          <target>11</target>
-        </configuration>
+        <version>3.8.1</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
